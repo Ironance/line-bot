@@ -39,6 +39,17 @@ def handle_message(event):
     msg = event.message.text
     r = 'I do not know what you said.'
 
+    if 'sticker' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='1',
+            sticker_id='1'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return  #to end the function
+
     if msg in ['hi', 'Hi']:
         r = 'hi'
     elif msg == 'eat?':
@@ -48,18 +59,10 @@ def handle_message(event):
     elif 'order' in msg:
         r = 'Do you want to make a reservation?'
 
-#Send messages
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     TextSendMessage(text=r))
-    
-#Send stickers
     line_bot_api.reply_message(
         event.reply_token,
-        StickerSendMessage(
-            package_id='1',
-            sticker_id='1'
-    ))
+        TextSendMessage(text=r))
+    
 
 
 
