@@ -48,9 +48,19 @@ def handle_message(event):
     elif 'order' in msg:
         r = 'Do you want to make a reservation?'
 
+#Send messages
+    # line_bot_api.reply_message(
+    #     event.reply_token,
+    #     TextSendMessage(text=r))
+    
+#Send stickers
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=r))
+        StickerSendMessage(
+            package_id='1',
+            sticker_id='1'
+    ))
+
 
 
 if __name__ == "__main__":
